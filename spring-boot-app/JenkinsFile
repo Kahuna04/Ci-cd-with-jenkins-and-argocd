@@ -24,7 +24,7 @@ pipeline {
         SONAR_URL = "http://54.209.204.255:9000"
       }
       steps {
-        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+        withCredentials([string(credentialsId: 'Sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
           sh 'cd spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
         }
       }
@@ -33,7 +33,7 @@ pipeline {
       environment {
         DOCKER_IMAGE = "kahuna00/jenkins-cicd:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "spring-boot-app/Dockerfile"
-        REGISTRY_CREDENTIALS = credentials('dockerhub')
+        REGISTRY_CREDENTIALS = credentials('Docker')
       }
       steps {
         script {
