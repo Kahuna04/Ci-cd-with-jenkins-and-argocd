@@ -48,13 +48,13 @@ pipeline {
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "Ci-cd-with-jenkins-and-argocd"
-            GIT_USER_NAME = "kahuna04"
+            GIT_USER_NAME = "Kahuna04"
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     git config user.email "ogundele.damilare4@gmail.com"
-                    git config user.name "kahuna04"
+                    git config user.name "Kahuna04"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
                     git add spring-boot-app-manifests/deployment.yml
